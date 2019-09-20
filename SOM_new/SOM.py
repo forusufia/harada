@@ -1,8 +1,6 @@
 import numpy as np
 from scipy.spatial.distance import cdist
 from sklearn.decomposition import PCA
-#import matplotlib.pyplot as plt
-#import matplotlib.animation as animation
 
 # SOM class
 class SOM:
@@ -45,11 +43,11 @@ class SOM:
 
     def __m_step(self, data, t):
         self.h = np.exp(-0.5 * cdist(self.zeta, self.z) / (self.__sigma(t) ** 2))
-        # print("k_star", np.size(self.k_star, axis=0))
-        # print("z", np.size(self.z, axis=0), np.size(self.z, axis=1))
-        # print("zeta", np.size(self.zeta, axis=0), np.size(self.zeta, axis=1))
-        # print("h", np.size(self.h, axis=0), np.size(self.h, axis=1))
-        # print("data", np.size(data, axis=0), np.size(data, axis=1))
+        print("k_star", np.size(self.k_star, axis=0))
+        print("z", np.size(self.z, axis=0), np.size(self.z, axis=1))
+        print("zeta", np.size(self.zeta, axis=0), np.size(self.zeta, axis=1))
+        print("h", np.size(self.h, axis=0), np.size(self.h, axis=1))
+        print("data", np.size(data, axis=0), np.size(data, axis=1))
         self.y = np.dot(self.h, data) / np.sum(self.h, axis=1)[:, None]
 
     def __sigma(self, t):
