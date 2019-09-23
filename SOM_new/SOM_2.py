@@ -3,7 +3,7 @@ from scipy.spatial.distance import cdist
 from sklearn.decomposition import PCA
 
 # SOM class
-class SOM:
+class SOM2:
 
     def __init__(self,
                  D = 2,
@@ -33,7 +33,7 @@ class SOM:
     def initialize(self, data):
         self.zeta = create_zeta(self.resolution, self.D)
         # self.y = np.zeros((np.size(data, axis=0), np.size(data, axis=1)))
-        self.y = np.random.rand(self.resolution**2, self.D)
+        self.y = np.random.rand(self.resolution**2, np.size(data, axis=1))
         #pca = PCA(self.D)
         #pca.fit(data)
         #self.y = pca.inverse_transform(np.sqrt(pca.explained_variance_)[None, :] * self.zeta)
@@ -42,7 +42,7 @@ class SOM:
         # print("data", np.size(data, axis=0), np.size(data, axis=1))
         # print("y", np.size(self.y, axis=0), np.size(self.y, axis=1))
         self.k_star = np.argmin(cdist(data, self.y), axis=1)
-        # self.k_star = np.argmin(np.sum(np.power(data[:, None] - self.y[None, :], 2), axis=1), axis=0)
+        # self.k_star = np.argmin(np.sum(np.power(data[None, :] - self.y, 2), axis=1), axis=0)
         # print("k_star", np.size(self.k_star, axis=0))
         # print("zeta", np.size(self.zeta, axis=0), np.size(self.zeta, axis=1))
         self.z = self.zeta[self.k_star, :]

@@ -4,7 +4,6 @@ import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
 from SOM import SOM
 
-
 #load data
 data = np.loadtxt("data1.txt")
 
