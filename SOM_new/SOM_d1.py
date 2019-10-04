@@ -1,13 +1,14 @@
 import numpy as np
 from scipy.spatial.distance import cdist
 from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
 
 # SOM class
 class SOM:
 
     def __init__(self,
                  D = 1,
-                 resolution = 8,
+                 resolution = 25,
                  sigma_max = 1.0,
                  sigma_min = 0.1,
                  tau = 40.0
@@ -27,13 +28,18 @@ class SOM:
 
     def fit(self, data, t):
         #self.initialize(data)
-        self.__e_step(data)
-        self.__m_step(data, t)
         # self.__e_step(data)
+        self.__m_step(data, t)
+        self.__e_step(data)
 
     def initialize(self, data):
         self.zeta = create_zeta(self.resolution, self.D)
+        np.random.seed(0)
         self.y = np.random.rand(self.resolution, np.size(data, axis=1))
+        # da = np.zeros((41, 2))
+        # for i in range(41):
+        #     da[i] = np.array([5.5, i / 41])
+        # self.y = da
         self.z = np.random.rand(np.size(data, axis=0), self.D)
         # pca = PCA(np.size(data, axis=1))
         # pca.fit(data)

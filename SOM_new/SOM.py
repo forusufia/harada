@@ -7,10 +7,10 @@ class SOM:
 
     def __init__(self,
                  D = 2,
-                 resolution = 10,
+                 resolution = 7,
                  sigma_max = 1.0,
                  sigma_min = 0.05,
-                 tau = 50.0
+                 tau = 40.0
                  ):
         self.D = D
         self.resolution = resolution
@@ -27,13 +27,16 @@ class SOM:
 
     def fit(self, data, t):
         #self.initialize(data)
-        self.__e_step(data)
+        # self.__e_step(data)
         self.__m_step(data, t)
+        self.__e_step(data)
 
     def initialize(self, data):
         self.zeta = create_zeta(self.resolution, self.D)
+        np.random.seed(0)
         # self.y = np.zeros((np.size(data, axis=0), np.size(data, axis=1)))
         self.y = np.random.rand(self.resolution**2, self.D)
+        self.z = np.random.rand(np.size(data, axis=0), self.D)
         #pca = PCA(self.D)
         #pca.fit(data)
         #self.y = pca.inverse_transform(np.sqrt(pca.explained_variance_)[None, :] * self.zeta)

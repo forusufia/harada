@@ -1,0 +1,13 @@
+Node = 5*5
+D = 2
+sigma_max = 1.0
+sigma_min = 0.4
+tau = 40
+y 
+
+data 
+5*5 dots + 1 out value
+D = 2
+T = 60
+
+M -> E

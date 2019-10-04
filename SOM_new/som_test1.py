@@ -5,13 +5,30 @@ from mpl_toolkits.mplot3d import Axes3D
 from SOM_d1 import SOM
 
 #load data
-# data = np.loadtxt("data1.txt")
+# data = np.loadtxt("dataoriginal.txt")
 
-resolution = 2
-D = 2
-data = np.meshgrid(np.linspace(-1, 1, resolution), np.linspace(1, -1, resolution))
-data = np.dstack(data)
-data = data.reshape(resolution ** 2, D)
+# resolution = 10
+# resolution2 = 5
+# D = 2
+# data = np.meshgrid(np.linspace(-1, 1, resolution), np.linspace(1, -1, resolution2))
+# data = np.dstack(data)
+# data = data.reshape(resolution * resolution2, D)
+
+# x = np.arange(0, 1.05, 0.05)
+# x = np.reshape(x, (len(x), 1))
+# y = (-0.2*x)+0.2
+# y = np.reshape(y, (len(y), 1))
+# dat = np.concatenate([x,y], axis=1)
+# a = np.arange(0, 1, 0.05)
+# a = np.reshape(a, (len(a), 1))
+# b = np.array([0]*20)
+# b = np.reshape(b, (len(b), 1))
+# c = np.concatenate([a,b], axis=1)
+# data = np.concatenate([dat, c], axis = 0)
+
+x = np.arange(-3.14, 3.14, 0.1)
+y = np.sin(x)
+data = np.stack([x, y], 1)
 
 def update(t, ax_latent, ax_observable, obss, lats):
     ax_latent.cla()
@@ -30,6 +47,7 @@ def update(t, ax_latent, ax_observable, obss, lats):
 fig = plt.figure(figsize=(12, 6))
 ax_latent = fig.add_subplot(121)
 ax_observable = fig.add_subplot(122)
+# ax_latent = fig.add_subplot(122)
 lats = []
 obss = []
 
