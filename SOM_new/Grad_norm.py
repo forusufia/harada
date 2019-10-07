@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import scipy.spatial.distance as dist
 from sklearn.preprocessing import StandardScaler
 import matplotlib.animation
-from ...tools.calc_grad_norm_of_ks import calc_grad_norm_of_ks as calc_grad_norm
+from calc_grad_norm_of_ks import calc_grad_norm_of_ks as calc_grad_norm
 
 
 class Grad_Norm:

@@ -6,7 +6,7 @@ from SOM import SOM
 
 #load data
 # data = np.loadtxt("dataoriginal.txt")
-# data = np.loadtxt("data1.txt")
+data = np.loadtxt("data1.txt")
 
 # resolution = 5
 # resolution2 = 5
@@ -17,17 +17,17 @@ from SOM import SOM
 # a = np.array([[-0.4, -2], [0.21, -4], [0.62, -3]])
 # data = np.concatenate([data, a])
 
-x = np.arange(0, 1.05, 0.05)
-x = np.reshape(x, (len(x), 1))
-y = (-0.2*x)+0.2
-y = np.reshape(y, (len(y), 1))
-dat = np.concatenate([x,y], axis=1)
-a = np.arange(0, 1, 0.05)
-a = np.reshape(a, (len(a), 1))
-b = np.array([0]*20)
-b = np.reshape(b, (len(b), 1))
-c = np.concatenate([a,b], axis=1)
-data = np.concatenate([dat, c], axis = 0)
+# x = np.arange(0, 1.05, 0.05)
+# x = np.reshape(x, (len(x), 1))
+# y = (-0.2*x)+0.2
+# y = np.reshape(y, (len(y), 1))
+# dat = np.concatenate([x,y], axis=1)
+# a = np.arange(0, 1, 0.05)
+# a = np.reshape(a, (len(a), 1))
+# b = np.array([0]*20)
+# b = np.reshape(b, (len(b), 1))
+# c = np.concatenate([a,b], axis=1)
+# data = np.concatenate([dat, c], axis = 0)
 
 # x = np.arange(-3.14, 3.14, 0.1)
 # y = np.sin(x)

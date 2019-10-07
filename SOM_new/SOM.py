@@ -7,9 +7,9 @@ class SOM:
 
     def __init__(self,
                  D = 2,
-                 resolution = 7,
+                 resolution = 9,
                  sigma_max = 1.0,
-                 sigma_min = 0.05,
+                 sigma_min = 0.2,
                  tau = 40.0
                  ):
         self.D = D

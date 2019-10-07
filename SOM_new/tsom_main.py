@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from mpl_toolkits.mplot3d import Axes3D
 from SOM_T import TSOM
+from tsom2_viewer import TSOM2_Viewer
 
 #load data
 data = np.loadtxt("datatsom.txt")
@@ -41,16 +42,12 @@ for t in range(50):
     # lats.append(som.z)
 
 #plot
-# fargs = [ax_latent, ax_observable, obss, lats]
-# ani = animation.FuncAnimation(fig, update, fargs=fargs, frames=50, interval=100)
-# ani.save("test.gif", writer="pillow")
+grad = TSOM2_Viewer(data, som.k_star_1, som.k_star_2)
+grad.draw_map()
 
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-ax.scatter(data[:, :, 0], data[:, :, 1], data[:, :, 2])
-ax.scatter(som.y[:, :, 0], som.y[:, :, 1], som.y[:, :, 2])
-
-# plt.plot(data[:, 0], data[:, 1])
-# plt.plot(som.y[:, 0], som.y[:, 1], color='red')
+# fig = plt.figure()
+# ax = fig.gca(projection='3d')
+# ax.scatter(data[:, :, 0], data[:, :, 1], data[:, :, 2])
+# ax.scatter(som.y[:, :, 0], som.y[:, :, 1], som.y[:, :, 2])
 
 plt.show()

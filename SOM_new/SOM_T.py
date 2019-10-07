@@ -8,7 +8,7 @@ class TSOM:
     def __init__(self,
                  D = 1,
                  n = 3,
-                 resolution = 50,
+                 resolution = 49,
                  sigma_max = 1.0,
                  sigma_min = 0.05,
                  tau = 50.0
@@ -48,9 +48,9 @@ class TSOM:
     def __e_step(self, data):
         n = 0
         self.k_star_1 = np.argmin(np.sum(np.power(self.u_1[None, :, :, :] - self.y[:, None, :, :], 2), axis=(2,3)), axis=0)
-        print("k1", self.k_star_1.shape)
+        # print("k1", self.k_star_1.shape)
         self.k_star_2 = np.argmin(np.sum(np.power(self.u_2[:, None, :, :] - self.y[:, :, None, :], 2), axis=(0,3)), axis=0)
-        print("k2", self.k_star_2.shape)
+        # print("k2", self.k_star_2.shape)
         self.z_1 = self.zeta_1[self.k_star_1]
         self.z_2 = self.zeta_2[self.k_star_2]
 
@@ -61,18 +61,18 @@ class TSOM:
         # print("z", np.size(self.z, axis=0), np.size(self.z, axis=1))
         # print("zeta", np.size(self.zeta, axis=0), np.size(self.zeta, axis=1))
         # print("h", np.size(self.h, axis=0), np.size(self.h, axis=1))
-        print("r_2", np.size(self.r_2, axis=0), np.size(self.r_2, axis=1))
-        print("z_1", np.size(self.z_1, axis=0))
-        print("z_2", np.size(self.z_2, axis=0))
+        # print("r_2", np.size(self.r_2, axis=0), np.size(self.r_2, axis=1))
+        # print("z_1", np.size(self.z_1, axis=0))
+        # print("z_2", np.size(self.z_2, axis=0))
         # self.u_1 = np.sum(self.r_2[None, :, :, None] * data[:, None, :, :], axis=2) / np.sum(self.r_2, axis=0)[None, :, None]
         self.u_1 = np.einsum("jk,ikl -> ijl", self.r_2, data) / np.sum(self.r_2, axis=1)[None, :, None]
-        print("u1", self.u_1.shape)
+        # print("u1", self.u_1.shape)
         # self.u_2 = np.sum(self.r_1[:, :, None, None] * data[None, :, :, :], axis=0) / np.sum(self.r_1, axis=0)[:, None, None]
         self.u_2 = np.einsum("ij,jkl -> ikl", self.r_1, data) / np.sum(self.r_1, axis=1)[:, None, None]
-        print("u2", self.u_2.shape)
+        # print("u2", self.u_2.shape)
         # self.y = np.sum(self.r_1[:, None, :, None, None] * self.r_2[None, :, None, :, None] * data[None, None, :, :, :], axis=(2,3)) / (np.sum(self.r_1, axis=0)[:, None, None, None, None] * np.sum(self.r_2, axis=0)[None, :, None, None, None])
         self.y = np.einsum("ij,kl,jlm -> ikm", self.r_1, self.r_2, data) / (np.sum(self.r_1, axis=1)[:, None, None] * np.sum(self.r_2, axis=1)[None, :, None])
-        print("y", self.y.shape)
+        # print("y", self.y.shape)
 
     def __sigma(self, t):
         self.sigma = self.sigma_max + (self.sigma_min - self.sigma_max) * (t / self.tau)
